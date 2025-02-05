@@ -81,8 +81,8 @@
             margin-top: 10px;
         }
         .custom-column-width {
-            max-width: 500px;  /* Set a specific width or change as needed */
-            width: 100%; /* Allow it to scale if necessary */
+            max-width: 500px;
+            width: 100%;
         }
     </style>
 </head>
@@ -99,6 +99,7 @@
                 <option value="Clothing">Clothing</option>
                 <option value="Electronics">Electronics</option>
                 <option value="Food">Food</option>
+                <option value="Shopping">Shopping</option>
             </select>
         </div>
 
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 {
                     name: 'Puma',
-                    category: 'Clothing',
+                    category: 'Shopping',
                     logo: 'https://wallpapers.com/images/high/puma-classic-logo-z81qoc75xlgcvwub.webp',
                     offers: [
                         { offer: 'Jeans 20% Off', previousPrice: 200, offerPrice: 160 },
@@ -169,6 +170,24 @@ document.addEventListener('DOMContentLoaded', function () {
                     offers: [
                         { offer: '20% Off for two starbucks', previousPrice: 50, offerPrice: 40 },
                         { offer: 'Buy 1 Get 1 Free for children', previousPrice: 100, offerPrice: 100 }
+                    ]
+                },
+                {
+                    name: 'Fragrance Lounge',
+                    category: 'Shopping',
+                    logo: 'https://fragrancelounge.com/cdn/shop/files/THEMANCOMPANYBLACKEDT50ML.webp?v=1726736181',
+                    offers: [
+                        { offer: '10% Off for Jasmine Fragrance', previousPrice: 50, offerPrice: 40 },
+                        { offer: 'Buy 1 Get 1 Free Samll Sized Fragrance', previousPrice: 100, offerPrice: 100 }
+                    ]
+                },
+                {
+                    name: 'Decalthon',
+                    category: 'Clothing',
+                    logo: 'https://www.westgate.co.ke/wp-content/uploads/2024/10/Decathlon-Logo.png',
+                    offers: [
+                        { offer: '20% Off for Suits', previousPrice: 50, offerPrice: 40 },
+                        // { offer: 'Buy 1 Get 1 Free for children', previousPrice: 100, offerPrice: 100 }
                     ]
                 }
             ]
@@ -222,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h5>${offer.offer}</h5>
                             <p class="previous-price">Was: $${offer.previousPrice}</p>
                             <p class="offer-price">Now: $${offer.offerPrice}</p>
-                            <button class="btn btn-primary">Buy Now</button>
+                            <button class="btn btn-primary">Shop Now</button>
                         </div>
                     </div>
                 `).join('')}
