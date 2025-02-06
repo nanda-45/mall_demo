@@ -101,7 +101,7 @@
                 <option value="Food">Food</option>
                 <option value="Shopping">Shopping</option>
                 <option value="Sport">Sport</option>
-                
+
             </select>
         </div>
 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     category: 'Sport',
                     logo: 'https://www.westgate.co.ke/wp-content/uploads/2024/10/Decathlon-Logo.png',
                     offers: [
-                        { offer: '20% Off for Sports Kit', previousPrice: 50, offerPrice: 40 },
+                        { offer: '20% Off for Suits', previousPrice: 50, offerPrice: 40 },
                         // { offer: 'Buy 1 Get 1 Free for children', previousPrice: 100, offerPrice: 100 }
                     ]
                 }
@@ -210,25 +210,37 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Function to display shops in the selected mall
+    // Function to display shops in the selected mall
     function displayShops(categoryFilter = '') {
-        const shopList = document.getElementById('shop-list');
-        shopList.innerHTML = '';
+    const shopList = document.getElementById('shop-list');
+    shopList.innerHTML = ''; // Clear previous content
 
-        mall.shops.forEach(shop => {
-            if (categoryFilter === '' || shop.category.toLowerCase() === categoryFilter.toLowerCase()) {
-                const shopItem = document.createElement('div');
-                shopItem.classList.add('col-md-4');
-                shopItem.innerHTML = `
-                    <div class="shop-item text-center">
-                        <img src="${shop.logo}" alt="${shop.name}" class="offer-logo">
-                        <h4>${shop.name}</h4>
-                        <button class="btn btn-primary" onclick="displayOffers('${encodeURIComponent(JSON.stringify(shop))}')">See Offers</button>
-                    </div>
-                `;
-                shopList.appendChild(shopItem);
-            }
+    // Filtered shops based on the selected category
+    const filteredShops = mall.shops.filter(shop => categoryFilter === '' || shop.category.toLowerCase() === categoryFilter.toLowerCase());
+
+    // Check if there are no shops for the selected category
+    if (filteredShops.length === 0) {
+        const noShopsMessage = document.createElement('div');
+        noShopsMessage.classList.add('col-12', 'text-center');
+        noShopsMessage.innerHTML = `<p class="text-danger">This category is not available in this mall.</p>`;
+        shopList.appendChild(noShopsMessage);
+    } else {
+        // Display the shops as usual if there are matching categories
+        filteredShops.forEach(shop => {
+            const shopItem = document.createElement('div');
+            shopItem.classList.add('col-md-4');
+            shopItem.innerHTML = `
+                <div class="shop-item text-center">
+                    <img src="${shop.logo}" alt="${shop.name}" class="offer-logo">
+                    <h4>${shop.name}</h4>
+                    <button class="btn btn-primary" onclick="displayOffers('${encodeURIComponent(JSON.stringify(shop))}')">See Offers</button>
+                </div>
+            `;
+            shopList.appendChild(shopItem);
         });
     }
+}
+
 
     // Function to display offers of the selected shop
     window.displayOffers = function(shopString) {
